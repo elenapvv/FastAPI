@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from models import InputData
 from models import Data
 from models import GeneralData
 from database import Database
@@ -15,8 +16,8 @@ db = Database()
     "/add",
     response_description="Add new data in database",
 )
-async def add():
-    return db.add()
+async def add(data: InputData):
+    return db.add(data)
 
 
 @app.get(

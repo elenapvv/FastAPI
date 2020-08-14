@@ -6,6 +6,11 @@ from pydantic import Field
 data_length = 10
 
 
+# Модель для ввода данных
+class InputData(BaseModel):
+    data: str = Field(..., title="Data", description="Retrieved data", max_length=data_length)  # данные
+
+
 # Модель единичной записи данных
 class Data(BaseModel):
 

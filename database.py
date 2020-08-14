@@ -10,27 +10,22 @@ from starlette.responses import Response
 import xml.etree.ElementTree as xml
 
 
-# Создание строки из случайных символов для заполнения поля data в базе данных
-def new_data():
-    return ''.join(random.choice(string.ascii_letters) for _ in range(data_length))
-
-
 # Таблица базы данных состоит из id (автоинкремент) и data
 class Database:
     def __init__(self):
         try:
             self.conn = psycopg2.connect(dbname='databaseForShvabe', user='postgres',
-                                password='***', host='localhost')
+                                password='zaqxsw', host='localhost')
             self.cursor = self.conn.cursor()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
 
-    def add(self) -> Response:
+    def add(self, retrieved_data) -> Response:
         # Добавление данных в базу данных
 
         try:
             self.cursor.execute('INSERT INTO "dataTable" (data) VALUES (%s)',
-                                (new_data(),))
+                                (retrieved_data.data,))
             self.conn.commit()
             return Response(status_code=status.HTTP_200_OK)
         except (Exception, psycopg2.DatabaseError) as error:
