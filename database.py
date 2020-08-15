@@ -15,7 +15,7 @@ class Database:
     def __init__(self):
         try:
             self.conn = psycopg2.connect(dbname='databaseForShvabe', user='postgres',
-                                password='zaqxsw', host='localhost')
+                                password='***', host='localhost')
             self.cursor = self.conn.cursor()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
