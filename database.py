@@ -14,7 +14,7 @@ import xml.etree.ElementTree as xml
 class Database:
     def __init__(self):
         try:
-            self.conn = psycopg2.connect(dbname='databaseForShvabe', user='postgres',
+            self.conn = psycopg2.connect(dbname='database', user='postgres',
                                 password='***', host='localhost')
             self.cursor = self.conn.cursor()
         except (Exception, psycopg2.DatabaseError) as error:
